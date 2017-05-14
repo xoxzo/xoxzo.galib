@@ -1,0 +1,11 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+*.html
+/xoxzo.galib.egg-info
+/.eggs
+/dist
+_build
+build
