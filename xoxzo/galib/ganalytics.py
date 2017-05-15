@@ -160,5 +160,6 @@ class HitClient():
 
         except (Exception) as e:
             logger.error("### Failed to send %s hit %s with error %s ###" % (hit_type, kwargs, e))
+            raise e
 
 
