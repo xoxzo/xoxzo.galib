@@ -94,13 +94,13 @@ class HitClient():
 
         hit_data = {}
         hit_data['t'] = "transaction"
-        hit_data['tr'] = revenue
+        hit_data['tr'] = str(revenue)
         hit_data['cu'] = currency
 
         if tax:
-            hit_data['tt'] = tax
+            hit_data['tt'] = str(tax)
         if shipping:
-            hit_data['ts'] = shipping
+            hit_data['ts'] = str(shipping)
         if affiliation:
             hit_data['ta'] = affiliation
 
@@ -141,7 +141,8 @@ class HitClient():
                                     user_id=kwargs.get('user_id', None),
                                     shipping=kwargs.get('shipping', None),
                                     tax=kwargs.get('tax', None),
-                                    affiliation=kwargs.get('affiliation', None)
+                                    affiliation=kwargs.get('affiliation', None),
+                                    transaction_id=kwargs.get('transaction_id', None),
                                     )
             if hit_type == "event":
                 hit_payload = processor(
