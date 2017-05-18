@@ -153,6 +153,7 @@ class HitClient():
                                     event_value=kwargs.get('event_value', None),
                                     )
             r = requests.post(GA_ENDPOINT, data=hit_payload)
+            r.raise_for_status()
 
             logger.info("### %s hit was sent: %s ###" % (hit_type, hit_payload))
 
