@@ -11,13 +11,19 @@ import requests
 
 logger = logging.getLogger(__name__)
 
-GA_ENDPOINT    = "https://www.google-analytics.com/collect"
+GA_ENDPOINT         = "https://www.google-analytics.com/collect"
+GA_DEBUG_ENDPOINT   = "https://www.google-analytics.com/debug/collect"
 
 class HitClient():
 
     _VERSION = 1
 
-    def __init__(self, property_id):
+    def __init__(self, property_id, debug=False):
+        if debug:
+            self._debug_flag = True
+        else:
+            self._debug_flag = False
+
         self._PID = property_id
 
         self._common_data = {
@@ -152,9 +158,15 @@ class HitClient():
                                     event_label=kwargs.get('event_label', None),
                                     event_value=kwargs.get('event_value', None),
                                     )
-            r = requests.post(GA_ENDPOINT, data=hit_payload)
-            r.raise_for_status()
+            if self._debug_flag:
+                # For debug tests return the json
+                r = requests.post(GA_DEBUG_ENDPOINT, data=hit_payload)
+                r.raise_for_status()
+                return r.json()
+            else:
+                r = requests.post(GA_ENDPOINT, data=hit_payload)
 
+            r.raise_for_status()
             logger.info("### %s hit was sent: %s ###" % (hit_type, hit_payload))
 
             if hit_type == "transaction":
