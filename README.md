@@ -18,6 +18,8 @@ These documentation was referred to when writing this library:
 
 - https://developers.google.com/analytics/devguides/collection/protocol/v1/parameters
 - https://developers.google.com/analytics/devguides/collection/protocol/v1/devguide
+- https://www.distilled.net/resources/a-comprehensive-guide-to-tracking-offline-interactions-in-google-analytics/
+- http://stackoverflow.com/questions/43895929/ecommerce-hits-not-showing-in-google-analytics-measurement-protocol
 
 ## The Details
 
